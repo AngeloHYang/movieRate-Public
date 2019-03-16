@@ -35,6 +35,8 @@
 
 ## English
 
+This is a "basic version of IMDb". You can add movies (input their names, your ratings and comments), view them, export them and delete them.
+
 **WARNING** This is but a coding practice for a freshman creating his project for the first time. You may encounter lack of functions, tons of possible bugs, grammatical problems, and bad logics.
 
 ### System Requirements
