@@ -55,6 +55,7 @@ struct eachData* addMenu(struct eachData* start)
 			}
 			else if (strcmp(inputSelection, "y") == 0)
 			{
+				(*IDCounter) = (*IDCounter) + 1;
 				start = addMovie(namePlace, starPlace, commentPlace, start, IDCounter);
 				printf("成功添加!\n");
 				memcpy(inputSelection, moreBase, 1000);
@@ -62,6 +63,7 @@ struct eachData* addMenu(struct eachData* start)
 			else if (strcmp(inputSelection, "n") != 0)
 			{
 				printf("我就当那是\"是\"了。\n");
+				(*IDCounter) = (*IDCounter) + 1;
 				start = addMovie(namePlace, starPlace, commentPlace, start, IDCounter);
 				printf("成功添加!\n");
 				memcpy(inputSelection, moreBase, 1000);
@@ -97,6 +99,7 @@ struct eachData* addMenu(struct eachData* start)
 			}
 			else if (strcmp(inputSelection, "y") == 0)
 			{
+				(*IDCounter) = (*IDCounter) + 1;
 				start = addMovie(namePlace, starPlace, commentPlace, start, IDCounter);
 				printf("Added successfully!\n");
 				memcpy(inputSelection, moreBase, 1000);
@@ -104,6 +107,7 @@ struct eachData* addMenu(struct eachData* start)
 			else if(strcmp(inputSelection, "n") != 0)
 			{
 				printf("I'll  take it as a \"yes\".\n");
+				(*IDCounter) = (*IDCounter) + 1;
 				start =  addMovie(namePlace, starPlace, commentPlace, start, IDCounter);
 				printf("Added successfully!\n");
 				memcpy(inputSelection, moreBase, 1000);

@@ -10,7 +10,7 @@ void exportMenu(struct eachData* start)
 	{
 		system("cls");
 		printf("数据将会导出到名为 movies.md 的文件中...");
-		errno_t err;
+		errno_t err;  //判断此文件流是否存在 存在返回1
 		FILE* new;
 		err = fopen_s(&new, "movies.md", "w+");
 		//new = fopen("movies.md", "w+");
@@ -58,7 +58,7 @@ void exportMenu(struct eachData* start)
 	{
 		system("cls");
 		printf("We are going to export the data into a md file named \"movies.md\"...");
-		errno_t err;
+		errno_t err;  //判断此文件流是否存在 存在返回1
 		FILE* new;
 		err = fopen_s(&new, "movies.md", "w+");
 		//new = fopen("movies.md", "w+");

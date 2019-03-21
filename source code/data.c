@@ -60,7 +60,6 @@ struct eachData* addMovie(char inputName[1000], int inputStar, char inputComment
 			memcpy(start->name, inputName, 1000);
 			memcpy(start->comment, inputComment, 10000);
 			start->stars = inputStar;
-			(*IDCounter) = (*IDCounter) +1;
 			start->ID = (*IDCounter);
 			//printf("We just added something to start, that being\nname: %s\nstar: %d\nID:%lld\n\n", inputName, inputStar, start->ID);
 			return start;
@@ -80,7 +79,6 @@ struct eachData* addMovie(char inputName[1000], int inputStar, char inputComment
 			memcpy(new->name, inputName, 1000);
 			memcpy(new->comment, inputComment, 10000);
 			new->stars = inputStar;
-			(*IDCounter) = (*IDCounter) + 1;
 			new->ID = (*IDCounter);
 
 			//printf("We just added something, that being\nname: %s\nstarts: %d\n\n", inputName, inputStar);
@@ -188,3 +186,73 @@ int searchByNameMovie()
 
 
 
+// File related functions.
+void getID()
+{
+	extern long long int* IDCounter;
+	//FILE* IDfromFile = fopen("ID", "rb+");
+	//if (IDfromFile == NULL)
+	//{
+		*IDCounter = 0;
+	//}
+	//else
+	//{
+	//	fread(IDCounter, sizeof(long long int), 1, IDfromFile);
+	//}
+	//if (IDfromFile != NULL)
+	//{
+	//	fclose(IDfromFile);
+	//}
+	//*IDCounter = 0;
+}
+
+void saveID()
+{
+	extern long long int* IDCounter;
+	//FILE* IDfromFile = fopen("ID", "wb+");
+	//fwrite(IDCounter, sizeof(long long int), 1, IDfromFile);
+	//fclose(IDfromFile);e
+}
+
+struct eachData* getMovieFile()
+{
+	//printf("Exporting data...");
+	extern struct eachData* start;
+	extern long long int* IDCounter;
+	FILE* movieData = fopen("movieData", "rb+");
+	start = NULL;
+	struct eachData* swap = (struct eachData*) malloc (sizeof(struct eachData));
+	if (movieData != NULL)
+	{
+		fread(swap, sizeof(struct eachData), 1, movieData);
+		while (feof(movieData) != 1)
+		{
+			(*IDCounter) = (*IDCounter) + 1;
+			start = addMovie(swap->name, swap->stars, swap->comment, start, IDCounter);
+			fread(swap, sizeof(struct eachData), 1, movieData);
+		}
+		fclose(movieData);
+	}
+	else
+	{
+		//printf("The file doesn't exist!\n");
+		//system("pause");
+		//fclose(movieData);
+	}
+	free(swap);
+	//printf("Done\n");
+	return start;
+}
+
+void saveMovieFile()
+{
+	extern struct eachData* start;
+	FILE* movieData = fopen("movieData", "wb+");
+	struct eachData* swap = start;
+	while (swap != NULL)
+	{
+		fwrite(swap, sizeof(struct eachData), 1, movieData);
+		swap = swap->next;
+	}
+	fclose(movieData);
+}
